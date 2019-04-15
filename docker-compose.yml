@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+
+  load-balancer:
+    image: fabiolb/fabio
+    volumes:
+      - ./fabio/fabio.properties:/etc/fabio/fabio.properties
+    ports:
+      - "80:9999" # HTTP traffic
+      - "9998:9998" # Web UI
+
+  consul:
+    image: consul
+    ports:
+      - "8500:8500" # Web UI
+
+  simple-http-server:
+    build:
+      context: ./simple-http-server
+      dockerfile: Dockerfile
+    environment:
+      - MY_ADDRESS=simple-http-server
+
+  simple-http-server-2:
+    build:
+      context: ./simple-http-server
+      dockerfile: Dockerfile
+    environment:
+      - MY_ADDRESS=simple-http-server-2
+    
