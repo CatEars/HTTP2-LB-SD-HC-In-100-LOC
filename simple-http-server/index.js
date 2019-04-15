@@ -19,7 +19,6 @@ const data = {
     ID: healthID,
     Name: "httpserver check",
     Interval: "5s",
-
   }
 };
 
